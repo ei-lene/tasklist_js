@@ -3,7 +3,7 @@ $(document).ready(function(){
 	//GLOBAL VARS
 	var myTasks = [];
 	var newTask, removeTask, numTask; 
-	
+
 	//DISPLAY LIST FUNCTION
 	function listTasks() {
 		$.each(myTasks,function(i,task){
@@ -14,7 +14,7 @@ $(document).ready(function(){
 	}
 
 	function showError(){
-		$('#task_list').append('<li>' + 'This is not a valid list number. Please input a valid list number' + '</li>');	
+		$('#error_message').append('<li>' + 'This is not a valid list number. Please input a valid list number' + '</li>');	
 	}
 
 	//EVENT ADD_task FORM SUBMIT 
@@ -22,6 +22,7 @@ $(document).ready(function(){
 		newTask = $(this).find('input:eq(0)').val();
 		myTasks.push(newTask);
 		$('#task_list').empty();
+		$('#error_message').empty();
 		// $('#task_list').text('');
 		// $('#task_list').html('');
 		listTasks();	
@@ -32,7 +33,8 @@ $(document).ready(function(){
 	//EVENT REMOVE_task FORM SUBMIT
 	$('#remove_task').submit(function(){
 		removeTask = $(this).find('input:eq(0)').val();
-		if (parseInt(removeTask)===0 || isNaN(removeTask)){
+		$('#error_message').empty();
+		if (parseInt(removeTask)===0 || isNaN(removeTask) || parseInt(removeTask) > myTasks.length){
 			$('#task_list').empty();
 			showError();
 			listTasks();
@@ -45,6 +47,13 @@ $(document).ready(function(){
 		}
 
 		return false; // prevent the form from submitting a page re-load
+	});
+
+	//SORTABLE PLUGIN
+
+	$(function() {
+		$('#task_list').sortable();
+		$('#task_list').disableSelection();
 	});
 	
 });

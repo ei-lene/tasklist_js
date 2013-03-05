@@ -28,6 +28,17 @@ form {
 	clear:both;
 }
 
+#error_message {
+	display:block;
+	border:1px solid #333;
+	background: #fff;
+	padding:5px;
+	border-radius:5px;
+	margin:140px 10px 5px 0px;
+	box-shadow: 5px 5px 0px #333;
+	text-align: center;
+}
+
 label, input {
 	display:block;
 	margin:0 0 5px;
@@ -84,4 +95,7 @@ li {
 	margin:0 0 5px 0;
 	border-bottom:1px dotted #ccc;
 	padding:2px;
+	cursor: pointer;
 }
+
+
